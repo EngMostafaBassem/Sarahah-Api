@@ -14,4 +14,4 @@ app.use(require('./routers/user.routes'))
 app.use(require('./routers/message.routes'))
 
 //set Port
-app.listen(env.process.PORT||3000)
+app.listen(process.env.PORT||3000)
