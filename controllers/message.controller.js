@@ -8,7 +8,7 @@ exports.saveMessage=(req,res)=>{
    }
    else{
     if(req._id&&req._id==req.body.user){
-        res.status(400).json({response:{msg:'You cannot send message to your self'}})
+        res.status(400).json({response:{msg:'You cannot send message to yourself'}})
     }
     else{
         MessageRepos.saveMsg(req.body).then(data=>{

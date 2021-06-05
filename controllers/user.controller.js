@@ -16,7 +16,6 @@ exports.register=(req,res)=>{
   }
  
 }
-
 exports.login=(req,res)=>{
     //login
     const errors = validationResult(req); 
@@ -30,4 +29,12 @@ exports.login=(req,res)=>{
       res.status(err.status).json({response:err})
     })
    }
+}
+
+exports.info=(req,res)=>{
+  UserRepos.GetUserInfo(req.body._id).then(data=>{
+    res.status(data.status).json({response:data})
+  }).catch(err=>{
+    res.status(err.status).json({response:err})
+  })
 }

@@ -59,3 +59,14 @@ exports.login=(body)=>new Promise(async(resolve,error)=>{
     error({status:500,msg:ex.message})
 }
 })
+
+exports.GetUserInfo=(id)=>new Promise(async(resolve,error)=>{
+    // here will retrieve basic info about user
+    try{
+   let user= await User.findOne({_id:id}).select('name -_id').exec()
+        resolve({status:200,user:user})
+    }catch(ex){
+        error({status:500,msg:ex.message})
+    }
+   
+})

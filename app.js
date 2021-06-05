@@ -12,6 +12,9 @@ mongoose.connect('mongodb+srv://dbfcis:j4MQgkB76feFW7y@cluster0.a5rkl.mongodb.ne
 //setup routers
 app.use(require('./routers/user.routes'))
 app.use(require('./routers/message.routes'))
+app.get("*",(req,res)=>{
+    res.json({status:400,msg:'Invalid endpoint for the api'})
+})
 
 //set Port
 app.listen(process.env.PORT||3000)
