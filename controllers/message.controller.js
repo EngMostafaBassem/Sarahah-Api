@@ -7,12 +7,18 @@ exports.saveMessage=(req,res)=>{
     res.status(400).json({response:{msg:'validations errors',errors:errors.array()}})
    }
    else{
-    MessageRepos.saveMsg(req.body).then(data=>{
-        res.status(data.status).json({response:data})
-    }).catch(err=>{
-        res.status(err.status).json({response:err})
-    })
-   }
+    if(req._id&&req._id==req.body.user){
+        res.status(400).json({response:{msg:'You cannot send message to your self'}})
+    }
+    else{
+        MessageRepos.saveMsg(req.body).then(data=>{
+            res.status(data.status).json({response:data})
+        }).catch(err=>{
+            res.status(err.status).json({response:err})
+        })
+       }
+    }
+  
   
 }
 exports.FindAllMessages=(req,res)=>{
